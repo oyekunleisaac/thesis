@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    /* font-family: 'Nunito'; */
+}
+section{
+    overflow-x: hidden;
+}
+.card-img-top{
+    height: 220px;
+}

@@ -1,0 +1,336 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+:root{
+    --header-height: 3rem;
+    --nav-width: 68px;
+    /* --first-color: #4723D9; */
+    --first-color: #0b0fdd;
+    /* --first-color-light: #AFA5D9;    */
+    --first-color-light: #AFA5D9;   
+    --white-color: #F7F6FB;
+     --body-font: 'Nunito';
+     --normal-font-size: 1rem;
+     --z-fixed: 100;
+}
+*,::before,::after{
+    box-sizing: border-box;
+    font-family: 'Nunito';
+}
+    body{
+        position: relative;
+        /* margin: var(--header-height) 0 0 0; */
+        padding: 0 1rem;
+        font-size: var(--normal-font-size);
+        font-family: 'Nunito';
+        transition: .5s;
+    }
+    a{
+        text-decoration: none;
+    }
+    .header{
+        width: 100%;
+        height: var(--header-height);
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        /* justify-content:space-between; */
+        padding: 0 1rem;
+        background-color: var(--white-color);
+        z-index: var(--z-fixed);
+        transition: .5s;
+    }
+    .header_toggle{color: var(--first-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .header_img{width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .header_img img{
+        width: 40px
+    }
+    .l-navbar{position: fixed;
+        top: 0;left: -30%;
+        width: var(--nav-width);
+        height: 100vh;
+        background-color: var(--first-color);
+        padding: .5rem 1rem 0 0;
+        transition: .5s;
+        z-index: var(--z-fixed);
+    }
+    .nav{height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+    .nav_logo, .nav_link{
+        display: grid;
+        grid-template-columns: max-content max-content;
+        align-items: center;
+        column-gap: 1rem;
+        padding: .5rem 0 .5rem 1.5rem;
+        text-decoration: none;
+    }
+    .nav_logo{
+        margin-bottom: 2rem;
+    }
+    .nav_logo-icon{
+        font-size: 1.25rem;
+        color: var(--white-color);
+    }
+    
+    .nav_link{position: relative;
+        color: var(--first-color-light);
+        margin-bottom: 1.5rem;transition: .3s;
+    }
+    .nav_link:hover{
+        color: var(--white-color);
+    }
+    .nav_icon{
+        font-size: 1.25rem;
+    }
+    .show{left: 0}
+    .body-pd{
+        padding-left: calc(var(--nav-width) + 1rem);
+    }
+    .active{
+        color: var(--white-color);
+    }
+    .active::before{content: '';
+        position: absolute;
+        left: 0;
+        width: 2px;
+        height: 32px;
+        background-color: var(--white-color);
+    }
+    .main-container{
+        margin-top: 4rem;
+    }
+    .highlight-card{
+        height: 170px;
+    }
+    .highlight-img{
+        font-size: 60px;
+        color: #0b0fdd;
+    }
+    .order-manage {
+        /* background: #e7faec; */
+        background: #2f32ee;
+        border-radius: 12px;
+    }
+    /* .card-header{
+        background-color: #0b0fdd !important;
+    } */
+    #swallowMenu,#mainMenu, #soupMenu, #proteinMenu, #extrasMenu, #beveragesMenu{
+        display: none;
+        transition:  0.5s;
+    
+    }
+    .menu-active:hover{
+        color: white;
+    }
+    .menu-active{
+        color: white;
+        background-color:#0b0fdd ;
+        padding: 5px 5px;
+        border-radius: 3px;
+    }
+    .menu-price{
+        color: #0b0fdd;
+    }
+
+
+    /* Styles for modal */
+    .modal{
+        z-index: 1000000!important;
+    }
+      
+    /* .modal-backdrop.show {
+        z-index: 100000!important;
+    } */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        transition-delay: 2s;
+      }
+      
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 70%;
+      }
+      
+      /* The Close Button */
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+    /* End of styles for modal */
+
+     /* Also add these style  */
+     .new-meal{
+        border: 5px dashed #0b0fdd;
+    }
+    /* End */
+
+     /* Responsiveness for Modal */
+     @media screen and(max-width:479px) {
+        .modal-content {
+            width: 80%;
+        }   
+    }
+
+    /* slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+    }
+      
+      /* Hide default HTML checkbox */
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+
+      
+      /* The slider */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #0b0fdd;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 23px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      
+      input:checked + .slider {
+        background-color: green;
+      }
+      
+      input:focus + .slider {
+        box-shadow: 0 0 1px green;
+      }
+      
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+      .slider.round {
+        border-radius: 34px;
+      }
+      .slider.round {
+        border-radius: 34px;
+      }
+      
+      .slider.round:before {
+        border-radius: 50%;
+    }
+    /* Not available toggle */
+    .slider-not {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: green;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    .slider-not:before {
+        position: absolute;
+        content: "";
+        height: 23px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    input:checked + .slider-not {
+        background-color: red;
+    }
+    input:focus + .slider-not {
+        box-shadow: 0 0 1px green;
+    }
+    input:checked + .slider-not:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+      .slider-not.round {
+        border-radius: 34px;
+    }
+      .slider-not.round {
+        border-radius: 34px;
+    }
+      .slider-not.round:before {
+        border-radius: 50%;
+    } 
+      
+    @media screen and (min-width: 768px){
+        body{
+            margin: calc(var(--header-height) + 1rem) 0 0 0;
+            padding-left: calc(var(--nav-width) + 2rem)
+        }
+        .header{
+            height: calc(var(--header-height) + 1rem);
+            padding: 0 2rem 0 calc(var(--nav-width) + 2rem)}
+        .header_img{
+            width: 40px;
+            height: 40px
+        }
+        .header_img img{
+            width: 45px;
+        }
+        .l-navbar{
+                left: 0;padding: 1rem 1rem 0 0
+            }
+        .show{
+            width: calc(var(--nav-width) + 156px)
+        }
+        .body-pd{
+            padding-left: calc(var(--nav-width) + 188px)
+        }
+    }
