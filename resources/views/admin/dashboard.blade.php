@@ -153,7 +153,7 @@
                                         <form action="/admin/quiz" method="POST" enctype="multipart/form-data">
                                         @csrf
                                             <div class="mb-3">
-                                            <input type="number" min="1" name="book_id" class="form-control" placeholder="Book ID">
+                                            <input type="hidden"  name="book_id" value="0" id="bookID" class="form-control" placeholder="Book ID" disabled>
                                             </div>
                                             <div class="mb-3">
                                                 <input type="text" name="q1" class="form-control" placeholder="Question 1">
@@ -203,8 +203,8 @@
                             </div>
                         </div>
 
-                        <span type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="float:left;" class="btn ms-auto">Add Questions</span>
-                        <b><span class="ms-auto">Book ID: <span class="fw-bold">{{$view['id']}}</span></span></b>
+                        <span type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="float:left;" id="addBtn" class="addBtn btn ms-auto">Add Questions</span>
+                        <b class="bkhidden"><span type="hidden" class="ms-auto">Book ID: <span type="hidden" class="book_id fw-bold">{{$view['id']}}</span></span></b>
 
                         </div>
                     </div>
@@ -228,6 +228,7 @@
             </div>
         </div>
     </footer>
+<script src="../assets/js/book.js"></script>
 </body>
 </html>
 

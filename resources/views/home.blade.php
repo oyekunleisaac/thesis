@@ -79,7 +79,7 @@
                             <h6 class="" style="color: hsl(218, 81%, 75%);">By <span>{{$view->author}}</span> </h6>
                             <p class="card-text">{{$view->description}}</p>
                             @if ($view->value == '0')
-                            <a href="viewpdf"><input type="button" value="View" class="btn btn-primary"></a>
+                            <a href="{{asset('files/'.$view->book)}}"><input type="button" value="View" class="btn btn-primary"></a>
                              @else
                              <a href="https://paystack.com/pay/vvdsqwfoaa"><input type="button" style="color:darkblue"  value="Pay" class="bg-warning btn btn-primary"></a>
                              @endif
@@ -101,7 +101,7 @@
                 
             </div>
         </div>
-    </section><br><br
+    </section><br><br>
    
  
 

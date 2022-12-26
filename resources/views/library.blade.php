@@ -76,30 +76,16 @@
                             <h5 class="card-title">{{$view->title}}</h5>
                             <h6 class="" style="color: hsl(218, 81%, 75%);">By <span>{{$view->author}}</span> </h6>
                             <p class="card-text">{{$view->description}}</p>
-                            @if ($view->value == '0')
-                            <input type="button" value="View" class="btn btn-primary">    
-                             @else
-                             <a href="https://paystack.com/pay/vvdsqwfoaa"><input type="button" style="color:darkblue"  value="Pay" class="bg-warning btn btn-primary"></a>
-                             @endif
-
-                            @if ($view->value == '0')
-                             <b><span style="float:right; color:green">Free</span></b>
-                             @else
-                             <b><span style="float:right; color:green">Value: ${{$view->value}}</span></b>
-                             @endif
-
+                           
                              @if ($view->id == '2')
-                             <br><span style="float:right; color:orange">In progress</span>
+                             <b><br><span style="float:right; color:orange">In progress</span></b>
                              @else
-                             <br><span style="float:right; color:green">Completed</span>
+                             <b><br><span style="float:right; color:green">Completed</span></b>
                              @endif
 
                         </div>
                         <!-- <center><span>In progress</span></center> -->
-                        <div class="card-footer">
-                        <small><a class="nav-link" href="{{url('quiz')}}">Take Quiz</a></small>
-                            <!-- <small style="color:blue "class="text-muted bi "> Take Quiz</small> -->
-                        </div>
+                       
                     </div>
                 </div>
                 @endforeach   

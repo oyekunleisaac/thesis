@@ -50,16 +50,21 @@ class AdminController extends Controller
         {
         return redirect('home'); 
         } 
-                
+        $request->validate( [
+            
+            'image' => 'mimes:jpeg,png,bmp,gif,svg,mp4,qt',
+            "book" => "required|mimetypes:application/pdf|max:2048"
+        ]);
+
             if ($request->hasFile('image')) 
-                {
-                    $image = $request->file('image');
-                    $books = $request->file('book');
-                    $image_name = time().'.'.$image->getClientOriginalExtension();
-                    $book_name = time().'.'.$books->getClientOriginalExtension();
-                    $destinationPath = public_path('files');
-                    $image->move($destinationPath, $image_name);
-                    $books->move($destinationPath, $book_name);
+            {
+            $image = $request->file('image');
+            $books = $request->file('book');
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $book_name = time().'.'.$books->getClientOriginalExtension();
+            $destinationPath = public_path('files');
+            $image->move($destinationPath, $image_name);
+            $books->move($destinationPath, $book_name);
 
             $book = new Premium([
             'title'      =>  $request->get('title'),
@@ -69,7 +74,7 @@ class AdminController extends Controller
             'avb'       =>  $request->get('avb'),
             'value'          =>  $request->get('value'),
             'image'            =>  $image_name,
-            'book'        =>  $books,
+            'book'        =>   $book_name,
             ]);
 
             $book->save();
@@ -81,7 +86,7 @@ class AdminController extends Controller
         {
             $book = Premium::get('book');
                     //return $book;
-            return Response::make(file_get_contents('files/1670796636.pdf'), 200, [
+            return Response::make(file_get_contents('files/1672078025.pdf'), 200, [
                 'content-type'=>'application/pdf',
             ]);
         }
