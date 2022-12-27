@@ -81,7 +81,7 @@
                         </div>
                         <div class="mb-3">
                             <select class="form-select" id="" name="avb">
-                                <option selected>Access</option>
+                                <option disabled selected hidden>Access</option>
                                 <option name="0" value="0">Free</option>
                                 <option name="1" value="1">Subscription Required</option>
                             </select>
