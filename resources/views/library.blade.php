@@ -64,8 +64,11 @@
     </nav>
     <section class="container-fluid">
         <div class="container mt-2">
-            <h2 class="fw-bold">History</h2><br>
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="d-flex my-5">
+            <h2 class="fw-bold">History</h2>           
+           <input type="text" id="searchbar" onkeyup="search_cat()" class="ms-auto form-control sticky-top"
+                       placeholder="Search for book"></input>
+            </div>            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach($view as $view)
             <div class="col">
                     <div class="card">
@@ -93,7 +96,7 @@
                 
             </div>
         </div>
-    </section><br><br
+    </section><br><br>
    
  
 
@@ -111,6 +114,8 @@
             </div>
         </div>
     </footer>
+    <script src="../assets/js/book.js"></script>
+
 </body>
 
 </html>

@@ -73,3 +73,6 @@ section{
 .royalty-features li{
     list-style:circle;
 }
+#searchbar{
+    width: 30%;
+}
