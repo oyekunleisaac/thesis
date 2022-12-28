@@ -153,7 +153,7 @@
                                         <form action="/admin/quiz" method="POST" enctype="multipart/form-data">
                                         @csrf
                                             <div class="mb-3">
-                                            <input type="hidden"  name="book_id" value="0" id="bookID" class="form-control" placeholder="Book ID" disabled>
+                                            <input type="number"  name="book_id" id="bookID" class="form-control" placeholder="Book ID" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <input type="text" name="q1" class="form-control" placeholder="Question 1">

@@ -14,49 +14,49 @@ let questions = [
     {
     id:0,
     numb: 2,
-    question: "Which of these teams have won the World Cup twice?",
-    answer: "Uruguay",
+    question: "Which is used to display information?",
+    answer: "Monitor",
     options: [
-      "Argentina",
-      "England",
-      "Uruguay",
-      "Brazil"
+      "Light pen",
+      "Mouse",
+      "Monitor",
+      "Keyboard"
     ]
   },
     {
     id:0,
     numb: 3,
-    question: "Which of these German teams have won the champions league?",
-    answer: "Hamburg",
+    question: "Which is an input device for typing?",
+    answer: "Keyboard",
     options: [
-      "Hamburg",
-      "Frankfurt",
-      "RB Leipzig",
-      "FC Cologne"
+      "Light pen",
+      "Mouse",
+      "Monitor",
+      "Keyboard"
     ]
   },
     {
     id:0,
     numb: 4,
-    question: "In what season did Roman Abramovich take over Chelsea?",
-    answer: "2003/04",
+    question: "Which is an input device for writing?",
+    answer: "Light pen",
     options: [
-      "2005/06",
-      "2003/04",
-      "2004/05",
-      "2002/03"
+      "Light pen",
+      "Mouse",
+      "Monitor",
+      "Keyboard"
     ]
   },
     {
     id:0,
     numb: 5,
-    question: "'Estadio da Luz' stadium belongs to what club?",
-    answer: "Benfica Lisbon",
+    question: "Which is a pointing device?",
+    answer: "Mouse",
     options: [
-      "Benfica Lisbon",
-      "Galatasaray",
-      "FC Porto",
-      "Valencia"
+      "Light pen",
+      "Mouse",
+      "Monitor",
+      "Keyboard"
     ]
   },
   // you can uncomment the below codes and make duplicate as more as you want to add question
