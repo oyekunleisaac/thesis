@@ -40,7 +40,43 @@ class HomeController extends Controller
         $user = User::all();
         return view('home', compact('view','user'));
     }
+    public function science()
+    {
+       
+        if (Auth::user()->role == 1)
+        return redirect('admin/verify'); 
+        elseif (Auth::user()->role == 2)
+        return redirect('admin/admin'); 
 
+        $view = Premium::all()->where('category',1);
+        $user = User::all();
+        return view('home', compact('view','user'));
+    }
+
+    public function art()
+    {
+       
+        if (Auth::user()->role == 1)
+        return redirect('admin/verify'); 
+        elseif (Auth::user()->role == 2)
+        return redirect('admin/admin'); 
+
+        $view = Premium::all()->where('category',2);
+        $user = User::all();
+        return view('home', compact('view','user'));
+    }
+    public function business()
+    {
+       
+        if (Auth::user()->role == 1)
+        return redirect('admin/verify'); 
+        elseif (Auth::user()->role == 2)
+        return redirect('admin/admin'); 
+
+        $view = Premium::all()->where('category',3);
+        $user = User::all();
+        return view('home', compact('view','user'));
+    }
     public function library()
     {
        
@@ -77,4 +113,5 @@ class HomeController extends Controller
        $quiz = Quiz::all();
         return view('quiz', compact('view','user','quiz'));
     }
-}
+
+ }

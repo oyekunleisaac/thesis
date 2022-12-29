@@ -87,6 +87,14 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <select  id="category" type="number" class="form-select form-control @error('category') is-invalid @enderror" name="category" required  autocomplete="category">
+                            <option disabled selected hidden>Select Category</option>
+                            @foreach($category as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                            </select>
+                            </div> 
+                        <div class="mb-3">
                             <input type="number" min="0" class="form-control" name="value" placeholder="$0">
                         </div>
                         <div class="mb-3">

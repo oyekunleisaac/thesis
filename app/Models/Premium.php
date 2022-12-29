@@ -18,7 +18,8 @@ class Premium extends Model
         'avb',
         'value',
         'image',
-        'book'
+        'book',
+        'category'
     ];
     
     public function user(){

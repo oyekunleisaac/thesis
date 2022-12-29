@@ -23,6 +23,7 @@ class CreatePremiaTable extends Migration
             $table->string('book');
             $table->string('avb');
             $table->string('value');
+            $table->unsignedBigInteger('category');
             $table->timestamps();
         });
     }
