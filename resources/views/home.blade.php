@@ -73,7 +73,12 @@
            <input type="text" id="searchbar" onkeyup="search_cat()" class="ms-auto form-control sticky-top"
                        placeholder="Search for book"></input>
             </div>
-           
+           <div class="mb-5">
+           <a href="home"><input type="button" style="background-color:darkblue; color:white"  value="All" class="btn btn-primary"></a>
+           <a href="science"><input type="button" style="background-color:darkblue; color:white"  value="Sciences" class="btn btn-primary"></a>
+           <a href="art"><input type="button" style="background-color:darkblue; color:white"  value="Art" class="btn btn-primary"></a>
+           <a href="business"><input type="button" style="background-color:darkblue; color:white"  value="Business" class="btn btn-primary"></a>
+           </div>
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach($view as $view)
             <div class="col">

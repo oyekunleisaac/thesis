@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Premium;
 use App\Models\Verify;
 use App\Models\Quiz;
+use App\Models\Category;
 use File;
 use Response;
 use Auth;
@@ -39,9 +40,12 @@ class AdminController extends Controller
         
        $view = Premium::all()->where('user_id', Auth::user()->id) ;
        $users = User::all();
+       $category = Category::all();
         
-        return view('admin/dashboard' , compact('view','users','quiz'));
+        return view('admin/dashboard' , compact('view','users','quiz','category'));
     }
+
+   
 
   
     public function book(Request $request)
@@ -70,6 +74,7 @@ class AdminController extends Controller
             'title'      =>  $request->get('title'),
             'author'       =>  $request->get('author'),
             'user_id'       =>  $request->get('user_id'),
+            'category'       =>  $request->get('category'),
             'description'       =>  $request->get('description'),
             'avb'       =>  $request->get('avb'),
             'value'          =>  $request->get('value'),

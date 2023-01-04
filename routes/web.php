@@ -25,6 +25,10 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('science', [App\Http\Controllers\HomeController::class, 'science'])->name('home');
+Route::get('art', [App\Http\Controllers\HomeController::class, 'art'])->name('home');
+Route::get('business', [App\Http\Controllers\HomeController::class, 'business'])->name('home');
+
 Route::get('/royalty', [App\Http\Controllers\HomeController::class, 'royalty'])->name('royalty');
 Route::get('/library', [App\Http\Controllers\HomeController::class, 'library'])->name('library');
 Route::get('/quiz', [App\Http\Controllers\HomeController::class, 'quiz'])->name('home');

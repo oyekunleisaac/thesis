@@ -79,8 +79,13 @@
                             <h5 class="card-title">{{$view->title}}</h5>
                             <h6 class="" style="color: hsl(218, 81%, 75%);">By <span>{{$view->author}}</span> </h6>
                             <p class="card-text">{{$view->description}}</p>
-                           
-                             @if ($view->id == '2')
+                            @if ($view->value == '0')
+                            <a href="{{asset('files/'.$view->book)}}"><input type="button" value="Continue reading" class="btn btn-primary"></a>
+                            @else
+                             <a href="{{asset('files/'.$view->book)}}"><input type="button" style="color:darkblue"  value="Retake" class="bg-warning btn btn-primary"></a>
+                             @endif
+
+                             @if ($view->id == '2' || $view->id == '3')
                              <b><br><span style="float:right; color:orange">In progress</span></b>
                              @else
                              <b><br><span style="float:right; color:green">Completed</span></b>
