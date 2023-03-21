@@ -11,6 +11,7 @@ use App\Models\Premium;
 use App\Models\Verify;
 use App\Models\Quiz;
 use App\Models\Category;
+use App\Models\Library;
 use File;
 use Response;
 use Auth;
@@ -57,7 +58,7 @@ class AdminController extends Controller
         $request->validate( [
             
             'image' => 'mimes:jpeg,png,bmp,gif,svg,mp4,qt',
-            "book" => "required|mimetypes:application/pdf|max:2048"
+            "book" => "required|mimetypes:application/pdf|max:1024000"
         ]);
 
             if ($request->hasFile('image')) 

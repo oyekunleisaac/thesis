@@ -15,23 +15,39 @@
 @extends('layouts.app')
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="./dashboard.html">E-LEARN</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand fw-bold" href="{{url('home')}}">E-LEARN</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5 align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{url('home')}}">HOME</a>
+                        <a class="nav-link active" aria-current="page" href="home">HOME</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#discover">LIBRARY</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{route('library')}}">MY LIBRARY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">LIBRARY</a>
+                             <a class="nav-link bg-warning rounded py-1" href="{{route('royalty')}}">
+                            ROYALTY
+                             </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#contact">CONTACT</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="page" href="#exampleModal">HELP</a>
+
+                   
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -39,17 +55,48 @@
                             Hi, <span id="username" class="">{{Auth::user()->fname}}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                            </a>  
-                           </ul>
+                        <a class="nav-link dropdown-item" aria-current="page" href="logout">Logout</a>
+              
+                        </ul>
                     </li>
                 </ul>
             </div>
+
         </div>
     </nav>
+
+    <section class="container-fluid">
+        <div class="container mt-2">
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">HELP</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2>FAQ</h2>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                        <ol>
+                            <li>How do I open a book</li>
+                            <ol><li><b>Answer: </b>Click on the view button</li></ol>
+                            <li>How do I contact the admin</li>
+                            <ol><li><b>Answer: </b>Click on the contact button, and select your preferred option</li></ol>
+
+                        </ol>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
     <section class="container-fluid my-2">
         <div class="container mt-2">
             <div class="header align-items-center">
@@ -242,10 +289,10 @@
     
             <div class="row py-2">
                 <div class="col justify-content-center d-flex ">
-                    <a href="" class=" btn bi bi-envelope fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-instagram fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-twitter fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-telephone fs-2 px-3"></a>
+                    <a href="mailto:elearninglibraryremote@gmail.com" class=" btn bi bi-envelope fs-2 px-3"></a>
+                    <!-- <a href="" class=" btn bi bi-instagram fs-2 px-3"></a> -->
+                    <a href="http://twitter.com/elearnlibrary" class=" btn bi bi-twitter fs-2 px-3"></a>
+                    <a href="tel:+44 7467 657200" class=" btn bi bi-telephone fs-2 px-3"></a>
                 </div>
             </div>
         </div>

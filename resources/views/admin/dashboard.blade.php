@@ -14,7 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/aos/aos.css">
 </head>
-@extends('layouts.app')
 
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
@@ -39,17 +38,9 @@
                             Welcome, <span id="username" class="">{{Auth::user()->fname}}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- <li><a class="dropdown-item" href="#">Change Password</a></li> -->
-                            <li><a class="dropdown-item" href="#">View Statistics</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                            </a> 
-                           </ul>
+                        <a class="nav-link dropdown-item" aria-current="page" href="../logout">Logout</a>
+              
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -69,15 +60,15 @@
                     <form action="/admin/dashboard" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="mb-3">
-                            <input type="text" name="title" class="form-control" placeholder="Book Title">
+                            <input type="text" name="title" class="form-control" placeholder="Book Title" required>
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="author" class="form-control" placeholder="Book Author">
+                            <input type="text" name="author" class="form-control" placeholder="Book Author" required>
                         </div>
-                        <input type="hidden" value="{{Auth::user()->id}}" name="user_id" class="form-control">
+                        <input type="hidden" value="{{Auth::user()->id}}" name="user_id" class="form-control" required>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="description" placeholder="Book Description">
+                            <input type="text" class="form-control" name="description" placeholder="Book Description" required>
                         </div>
                         <div class="mb-3">
                             <select class="form-select" id="" name="avb">
@@ -95,15 +86,15 @@
                             </select>
                             </div> 
                         <div class="mb-3">
-                            <input type="number" min="0" class="form-control" name="value" placeholder="$0">
+                            <input type="number" min="0" max="3000" class="form-control" name="value" placeholder="₦0" required>
                         </div>
                         <div class="mb-3">
                             <label class="fw-bold" for="book-thumbnail">Book Thumbnail (an image preview)</label>
-                            <input type="file" name="image" class="form-control">
+                            <input type="file" name="image" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label class="fw-bold" for="book-thumbnail">Book File</label>
-                            <input type="file" name="book" class="form-control" placeholder="">
+                            <input type="file" name="book" class="form-control" placeholder="" required>
                         </div>
                     
                 </div>
@@ -137,7 +128,9 @@
                             <b>Book Author:</b> <span>{{$view->author}}</span>
                             <h6 class="" style="color: hsl(218, 81%, 75%);">Uploaded by <span>{{Auth::user()->lname}} {{Auth::user()->fname}}</span></h6>
                             <p class="card-text">{{$view->description}}</p>
-                            <a href={{"delete/".$view['id']}}><input style="background-color:red" type="button" value="Delete" class="btn btn-primary"></a>
+                            <a href="{{asset('files/'.$view->book)}}"><input type="button" value="View" class="btn btn-primary"></a>
+                            <a onclick="return confirm('Are you sure you want to delete this book?');" href={{"delete/".$view['id']}}><input style="background-color:red" type="button" value="Delete" class="btn btn-primary"></a>
+
                              @if ($view->value == '0')
                              <b><span style="float:right; color:green">Free</span></b>
                              @else
@@ -161,7 +154,7 @@
                                         <form action="/admin/quiz" method="POST" enctype="multipart/form-data">
                                         @csrf
                                             <div class="mb-3">
-                                            <input type="number"  name="book_id" id="bookID" class="form-control" placeholder="Book ID" readonly>
+                                            <input type="number"  name="book_id" id="bookID" class="form-control" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <input type="text" name="q1" class="form-control" placeholder="Question 1">
@@ -228,10 +221,10 @@
     
             <div class="row py-2">
                 <div class="col justify-content-center d-flex ">
-                    <a href="" class=" btn bi bi-envelope fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-instagram fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-twitter fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-telephone fs-2 px-3"></a>
+                    <a href="mailto:elearninglibraryremote@gmail.com" class=" btn bi bi-envelope fs-2 px-3"></a>
+                    <!-- <a href="" class=" btn bi bi-instagram fs-2 px-3"></a> -->
+                    <a href="http://twitter.com/elearnlibrary" class=" btn bi bi-twitter fs-2 px-3"></a>
+                    <a href="tel:+44 7467 657200" class=" btn bi bi-telephone fs-2 px-3"></a>
                 </div>
             </div>
         </div>

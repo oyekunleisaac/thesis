@@ -10,10 +10,11 @@ calculate();
 function addBtnClicked(event) {
   var button = event.target;
   var menuItem = button.parentElement;
-  var bookID = menuItem.getElementsByClassName('book-id')[0].innerText; 
+  var bookID = menuItem.getElementsByClassName('book_id')[0].innerText; 
   addItemToModal(bookID);
 
 }
+
 
 const addItemToModal=(bookID)=>{
    document.querySelector("#bookID").value = bookID;

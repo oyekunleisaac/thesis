@@ -13,9 +13,8 @@
     <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet'>
 
 </head>
-@extends('layouts.app')
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="{{url('home')}}">E-LEARN</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -28,33 +27,35 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="home">HOME</a>
                     </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#discover">LIBRARY</a>
+                    </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{route('library')}}">LIBRARY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#contact">CONTACT</a>
+                        <a autofocus class="nav-link" aria-current="page" href="{{route('library')}}">MY LIBRARY</a>
                     </li>
                     <li class="nav-item">
                              <a class="nav-link bg-warning rounded py-1" href="{{route('royalty')}}">
                             ROYALTY
                              </a>
-                             </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#contact">CONTACT</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="page" href="home/#exampleModal">HELP</a>
+
+                   
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Hi, <span id="username" class="">{{Auth::user()->fname}}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- <li><a class="dropdown-item" href="#">Change Password</a></li>
-                            <li><a class="dropdown-item" href="#">Subscription</a></li>
-                            <li> -->
-                                <!-- <hr class="dropdown-divider"> -->
-                            </li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                            </a>                              
+                        <a class="nav-link dropdown-item" aria-current="page" href="logout">Logout</a>
+              
                         </ul>
                     </li>
                 </ul>
@@ -62,10 +63,42 @@
 
         </div>
     </nav>
+
+    <section class="container-fluid">
+        <div class="container mt-2">
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">HELP</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2>FAQ</h2>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                        <ol>
+                            <li>How do I open a book</li>
+                            <ol><li><b>Answer: </b>Click on the view button</li></ol>
+                            <li>How do I contact the admin</li>
+                            <ol><li><b>Answer: </b>Click on the contact button, and select your preferred option</li></ol>
+
+                        </ol>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </section>
     <section class="container-fluid">
         <div class="container mt-2">
         <div class="d-flex my-5">
-            <h2 class="fw-bold">History</h2>           
+            <h2 class="fw-bold">My Library</h2>           
            <input type="text" id="searchbar" onkeyup="search_cat()" class="ms-auto form-control sticky-top"
                        placeholder="Search for book"></input>
             </div>            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
@@ -79,7 +112,10 @@
                             <h5 class="card-title">{{$view->title}}</h5>
                             <h6 class="" style="color: hsl(218, 81%, 75%);">By <span>{{$view->author}}</span> </h6>
                             <p class="card-text">{{$view->description}}</p>
-                            @if ($view->value == '0')
+                            <a href="{{asset('files/'.$view->book)}}"><input type="button" value="View" class="btn btn-primary"></a>
+                            <a onclick="return confirm('Are you sure you want to delete this book from your library?');" href={{"delete/".$view['id']}}><input style="background-color:red" type="button" value="Delete" class="btn btn-primary"></a>
+
+                            <!-- @if ($view->value == '0')
                             <a href="{{asset('files/'.$view->book)}}"><input type="button" value="Continue reading" class="btn btn-primary"></a>
                             @else
                              <a href="{{asset('files/'.$view->book)}}"><input type="button" style="color:darkblue"  value="Retake" class="bg-warning btn btn-primary"></a>
@@ -89,7 +125,9 @@
                              <b><br><span style="float:right; color:orange">In progress</span></b>
                              @else
                              <b><br><span style="float:right; color:green">Completed</span></b>
-                             @endif
+                             @endif -->
+
+
 
                         </div>
                         <!-- <center><span>In progress</span></center> -->
@@ -101,20 +139,20 @@
                 
             </div>
         </div>
-    </section><br><br>
+    </section>
    
- 
 
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <footer class="container-fluid pb-0" style="background: hsl(218, 81%, 75%);" id="contact">
         <div class="container">
             <h2 class="text-white text-center pt-2">CONTACT US </h2>
 
             <div class="row py-2">
                 <div class="col justify-content-center d-flex ">
-                    <a href="" class=" btn bi bi-envelope fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-instagram fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-twitter fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-telephone fs-2 px-3"></a>
+                    <a href="mailto:elearninglibraryremote@gmail.com" class=" btn bi bi-envelope fs-2 px-3"></a>
+                    <!-- <a href="" class=" btn bi bi-instagram fs-2 px-3"></a> -->
+                    <a href="http://twitter.com/elearnlibrary" class=" btn bi bi-twitter fs-2 px-3"></a>
+                    <a href="tel:+44 7467 657200" class=" btn bi bi-telephone fs-2 px-3"></a>
                 </div>
             </div>
         </div>
