@@ -13,7 +13,6 @@
     <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet'>
 
 </head>
-@extends('layouts.app')
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -26,39 +25,39 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5 align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home">HOME</a>
+                        <a class="nav-link active" autofocus aria-current="page" href="home">HOME</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#discover">LIBRARY</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{route('library')}}">LIBRARY</a>
+                        <a class="nav-link" aria-current="page" href="{{route('library')}}">MY LIBRARY</a>
+                    </li>
+                    <li class="nav-item">
+                             <a  class="nav-link bg-warning rounded py-1" href="{{route('royalty')}}">
+                            ROYALTY
+                             </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#contact">CONTACT</a>
                     </li>
+                    
+                    
                     <li class="nav-item">
-                             <a class="nav-link bg-warning rounded py-1" href="{{route('royalty')}}">
-                            ROYALTY
-                             </a>
-                             </li>
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="page" href="#exampleModal">HELP</a>
+
+                   
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Hi, <span id="username" class="">{{Auth::user()->fname}}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- <li><a class="dropdown-item" href="#">Change Password</a></li>
-                            <li><a class="dropdown-item" href="#">Subscription</a></li>
-                            <li> -->
-                                <!-- <hr class="dropdown-divider"> -->
-                            </li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                            </a>                              
+                        <a class="nav-link dropdown-item" aria-current="page" href="logout">Logout</a>
+              
                         </ul>
+                        
                     </li>
                 </ul>
             </div>
@@ -67,12 +66,50 @@
     </nav>
     <section class="container-fluid">
         <div class="container mt-2">
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">HELP</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2>FAQ</h2>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                        <ol>
+                            <li>How do I open a book</li>
+                            <ol><li><b>Answer: </b>Click on the view button</li></ol>
+                            <li>How do I contact the admin</li>
+                            <ol><li><b>Answer: </b>Click on the contact button, and select your preferred option</li></ol>
 
+                        </ol>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
             <div class="d-flex my-5">
-            <h2 class="fw-bold">My Library</h2>           
+            <h2 class="fw-bold">Dashboard</h2>           
            <input type="text" id="searchbar" onkeyup="search_cat()" class="ms-auto form-control sticky-top"
                        placeholder="Search for book"></input>
             </div>
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                {{ session()->get('message') }}
+                </div>
+                @endif
+                <br>
+                @if(session()->has('error'))
+                <div class="alert alert-success">
+                {{ session()->get('error') }}
+                </div>
+                @endif
            <div class="mb-5">
            <a href="home"><input type="button" style="background-color:darkblue; color:white"  value="All" class="btn btn-primary"></a>
            <a href="science"><input type="button" style="background-color:darkblue; color:white"  value="Sciences" class="btn btn-primary"></a>
@@ -81,6 +118,7 @@
            </div>
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach($view as $view)
+
             <div class="col">
                     <div class="card">
                     <img class="card-img-top" src="{{asset('files/'.$view->image)}}" alt="{{$view->image}}"/>                                                       
@@ -90,15 +128,31 @@
                             <h6 class="" style="color: hsl(218, 81%, 75%);">By <span>{{$view->author}}</span> </h6>
                             <p class="card-text">{{$view->description}}</p>
                             @if ($view->value == '0')
+                            <form method="POST" action="postlibrary">
+                            @csrf
                             <a href="{{asset('files/'.$view->book)}}"><input type="button" value="View" class="btn btn-primary"></a>
-                             @else
-                             <a href="https://paystack.com/pay/vvdsqwfoaa"><input type="button" style="color:darkblue"  value="Pay" class="bg-warning btn btn-primary"></a>
-                             @endif
+                            <input type="hidden" value="{{$view->title}}" name="title" class="form-control"  required>
+                            <input type="hidden" value="{{$view->author}}" name="author" class="form-control"  required>
+                            <input type="hidden" value="{{Auth::user()->id}}" name="user_id" class="form-control" required>
+                            <input type="hidden" value="{{$view->description}}" class="form-control" name="description"  required>
+                            <input type="hidden" value="{{$view->avb}}" class="form-control" name="avb"  required>
+                            <input type="hidden" value="{{$view->category}}" class="form-control" name="category"  required>
+                            <input type="hidden" value="{{$view->value}}" class="form-control" name="value"  required>
+                            <input type="hidden" value="{{$view->image}}" name="image" class="form-control" required>
+                            <input type="hidden" value="{{$view->book}}" name="book" class="form-control" required>
+                            <input type="hidden" value="{{$view->id}}" name="book_id" class="form-control" required>
+                            <input type="submit" onclick="return confirm('Do you want to add this book to your library?'); onclick=success()" style="background-color:darkblue" value="Add to Library Collection" class="btn btn-primary">
+                           
+                        </form>
+                        @else
+                        <a href="https://paystack.com/pay/vvdsqwfoaa"><input type="button" style="color:darkblue"  value="Pay" class="bg-warning btn btn-primary"></a>
+                        <br>
+                         @endif
 
                             @if ($view->value == '0')
                              <b><span style="float:right; color:green">Free</span></b>
                              @else
-                             <b><span style="float:right; color:green">Value: ${{$view->value}}</span></b>
+                             <b><span style="float:right; color:green">Value: ₦{{$view->value}}</span></b>
                              @endif
                         </div>
                         <div class="card-footer">
@@ -122,10 +176,10 @@
 
             <div class="row py-2">
                 <div class="col justify-content-center d-flex ">
-                    <a href="" class=" btn bi bi-envelope fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-instagram fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-twitter fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-telephone fs-2 px-3"></a>
+                    <a href="mailto:elearninglibraryremote@gmail.com" class=" btn bi bi-envelope fs-2 px-3"></a>
+                    <!-- <a href="" class=" btn bi bi-instagram fs-2 px-3"></a> -->
+                    <a href="http://twitter.com/elearnlibrary" class=" btn bi bi-twitter fs-2 px-3"></a>
+                    <a href="tel:+44 7467 657200" class=" btn bi bi-telephone fs-2 px-3"></a>
                 </div>
             </div>
         </div>

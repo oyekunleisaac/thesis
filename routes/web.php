@@ -19,12 +19,14 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth/login');
 });
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
     
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/postlibrary', [App\Http\Controllers\HomeController::class, 'postlibrary'])->name('home');
 Route::get('science', [App\Http\Controllers\HomeController::class, 'science'])->name('home');
 Route::get('art', [App\Http\Controllers\HomeController::class, 'art'])->name('home');
 Route::get('business', [App\Http\Controllers\HomeController::class, 'business'])->name('home');
@@ -45,11 +47,12 @@ Route::post('admin/verify', [App\Http\Controllers\AdminController::class, 'verif
 Route::post('admin/verification', [App\Http\Controllers\AdminController::class, 'verification'])->name('admin');
 Route::get('admin/verification', [App\Http\Controllers\AdminController::class, 'admin'])->name('Admin');
 Route::get('admin/delete/{id}', [App\Http\Controllers\AdminController::class, 'delete']);
+Route::get('delete/{id}', [App\Http\Controllers\HomeController::class, 'delete']);
 
    
 /**
     * Logout Route
     */
-Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+// Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
  });
 

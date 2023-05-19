@@ -14,7 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/aos/aos.css">
 </head>
-@extends('layouts.app')
 
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
@@ -39,17 +38,9 @@
                             Welcome, <span id="username" class="">{{Auth::user()->fname}}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- <li><a class="dropdown-item" href="#">Change Password</a></li> -->
-                            <li><a class="dropdown-item" href="#">View Statistics</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                            </a> 
-                           </ul>
+                        <a class="nav-link dropdown-item" aria-current="page" href="../logout">Logout</a>
+              
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -88,6 +79,7 @@
                             <th>Do you have copyrighted materials?</th>
                             <th>Are you willing to share them?</th>
                             <th>Status</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,13 +106,28 @@
                         <input type="hidden" name="role" value="1">                     
 
                             @if ($verify->role == 0)
-                            <td><input type="submit" value="Verify" class="btn btn-primary"></td>                                              
+                            <td><input onclick="return confirm('You are about to verify this author?');" type="submit" value="Verify" class="btn btn-primary"></td>                                              
+                            <td><input onclick="return confirm('You are about to verify this author?');" type="submit" value="Verify" class="btn btn-primary"></td>                                              
+                            <!-- <td><input style="background-color:darkblue" onclick="return confirm('This author is verified');" type="button" value="✓" class="btn btn-primary"></td>                                               -->
                             @elseif ($verify->role == 1)
-                            <td><input style="background-color:green" type="button" value="Verified" class="btn btn-primary"></td>                                              
+                            <td><input style="background-color:green" onclick="return confirm('This author is verified');" type="button" value="Verified" class="btn btn-primary"></td> 
+                            
+                            <form action="verification" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$verify['id']}}">
+                        <input type="hidden" name="user_id" value="{{$verify->user_id}}">                     
+                        <input type="hidden" name="sub" value="{{$verify['sub']}}">                     
+                        <input type="hidden" name="dur" value="{{$verify['dur']}}">                     
+                        <input type="hidden" name="free" value="{{$verify['free']}}">                     
+                        <input type="hidden" name="copy" value="{{$verify['copy']}}">                     
+                        <input type="hidden" name="share" value="{{$verify['share']}}">                     
+                        <input type="hidden" name="role" value="0">       
+                            <td><input style="background-color:red" type="submit" value="Unverify" class="btn btn-primary"></td>                                              
                             @endif
                         
                     
 
+                            </form> 
                         </form> 
                     </tr>
                     @endforeach  
@@ -147,10 +154,10 @@
     
             <div class="row py-2">
                 <div class="col justify-content-center d-flex ">
-                    <a href="" class=" btn bi bi-envelope fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-instagram fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-twitter fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-telephone fs-2 px-3"></a>
+                    <a href="mailto:elearninglibraryremote@gmail.com" class=" btn bi bi-envelope fs-2 px-3"></a>
+                    <!-- <a href="" class=" btn bi bi-instagram fs-2 px-3"></a> -->
+                    <a href="http://twitter.com/elearnlibrary" class=" btn bi bi-twitter fs-2 px-3"></a>
+                    <a href="tel:+44 7467 657200" class=" btn bi bi-telephone fs-2 px-3"></a>
                 </div>
             </div>
         </div>

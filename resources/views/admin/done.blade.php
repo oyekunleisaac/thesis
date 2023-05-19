@@ -39,7 +39,12 @@
                     <div class="card bg-glass" data-aos="fade-up">
                         <div class="card-body px-4 py-5 px-md-5"><center><span><b>Verify Authors/Uploaders</b></span></center><br><br>
                             
-                        <center><h3>Congratulations {{Auth::user()->fname}}! <br>Please wait for the admin's approval.<br>Thank you</h3></center>
+                        <center><h3>Congratulations {{Auth::user()->fname}}! <br>Please wait for the admin's approval.<br>Thank you</h3>
+                    
+                        <br>
+                        <a href="../logout"><input type="button" style="background-color:red" value="Logout" class=" btn btn-primary"></a>
+                        
+                        </center>
                          <br>                              
                          <!-- <a href="{{url('admin/dashboard')}}"><button class="btn btn-block mb-4" style="background: hsl(218, 81%, 75%)">
                          Dashboard -->

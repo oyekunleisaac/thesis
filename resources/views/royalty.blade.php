@@ -13,9 +13,8 @@
     <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet'>
 
 </head>
-@extends('layouts.app')
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="{{url('home')}}">E-LEARN</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -28,29 +27,36 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="home">HOME</a>
                     </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#discover">LIBRARY</a>
+                    </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{route('library')}}">LIBRARY</a>
+                        <a class="nav-link" aria-current="page" href="{{route('library')}}">MY LIBRARY</a>
+                    </li>
+                    <li class="nav-item">
+                             <a autofocus class="nav-link bg-warning rounded py-1" href="{{route('royalty')}}">
+                            ROYALTY
+                             </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#contact">CONTACT</a>
                     </li>
+                    
+                    
+                    <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="page" href="#exampleModal">HELP</a>
+
                    
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Hi, <span id="username" class="">{{Auth::user()->fname}}</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- <li><a class="dropdown-item" href="#">Change Password</a></li>
-                            <li><a class="dropdown-item" href="#">Subscription</a></li>
-                            <li> -->
-                                <!-- <hr class="dropdown-divider"> -->
-                            </li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                            </a>                              
+                        <a class="nav-link dropdown-item" aria-current="page" href="logout">Logout</a>
+              
+                        </ul>                            
                         </ul>
                     </li>
                 </ul>
@@ -58,6 +64,37 @@
 
         </div>
     </nav>
+    <section class="container-fluid">
+        <div class="container mt-2">
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">HELP</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2>FAQ</h2>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                        <ol>
+                            <li>How do I open a book</li>
+                            <ol><li><b>Answer: </b>Click on the view button</li></ol>
+                            <li>How do I contact the admin</li>
+                            <ol><li><b>Answer: </b>Click on the contact button, and select your preferred option</li></ol>
+
+                        </ol>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
     <section class="container-fluid">
         <div class="container mt-2">
         <div class="d-flex my-5">
@@ -85,7 +122,7 @@
                             @if ($view->value == '0')
                              <b><span style="float:right; color:green">Free</span></b>
                              @else
-                             <b><span style="float:right; color:green">Value: ${{$view->value}}</span></b>
+                             <b><span style="float:right; color:green">Value: ₦{{$view->value}}</span></b>
                              @endif
                         </div>
                         <div class="card-footer">
@@ -109,10 +146,10 @@
 
             <div class="row py-2">
                 <div class="col justify-content-center d-flex ">
-                    <a href="" class=" btn bi bi-envelope fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-instagram fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-twitter fs-2 px-3"></a>
-                    <a href="" class=" btn bi bi-telephone fs-2 px-3"></a>
+                    <a href="mailto:elearninglibraryremote@gmail.com" class=" btn bi bi-envelope fs-2 px-3"></a>
+                    <!-- <a href="" class=" btn bi bi-instagram fs-2 px-3"></a> -->
+                    <a href="http://twitter.com/elearnlibrary" class=" btn bi bi-twitter fs-2 px-3"></a>
+                    <a href="tel:+44 7467 657200" class=" btn bi bi-telephone fs-2 px-3"></a>
                 </div>
             </div>
         </div>
